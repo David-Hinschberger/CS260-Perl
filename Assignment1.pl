@@ -21,20 +21,20 @@ sub inputchomp(){
     return $input;
 }
 
-print color('blink underline red on_blue'), "Mailing Label Creation (Part 1)\n", color('reset'), "Enter first name: ";
-@vals[0] = inputchomp();
-print "Enter last name: ";
-@vals[1] = inputchomp();
-print "Enter street address: ";
-@vals[2] = inputchomp();
-print "Enter city: ";
-@vals[3] = inputchomp();
-print "Enter state: ";
-@vals[4] = uc(inputchomp());
-print "Enter zip code: ";
-@vals[5] = inputchomp();
+# print color('blink underline red on_blue'), "Mailing Label Creation (Part 1)\n", color('reset'), "Enter first name: ";
+# @vals[0] = inputchomp();
+# print "Enter last name: ";
+# @vals[1] = inputchomp();
+# print "Enter street address: ";
+# @vals[2] = inputchomp();
+# print "Enter city: ";
+# @vals[3] = inputchomp();
+# print "Enter state: ";
+# @vals[4] = uc(inputchomp());
+# print "Enter zip code: ";
+# @vals[5] = inputchomp();
 
-say "\n", @vals[0], " ", @vals[1], "\n", @vals[2], "\n", @vals[3], " ", length(@vals[4]) > 2? substr(@vals[4], 0, 2) : @vals[4], ", ", @vals[5], "\n";
+# say "\n", @vals[0], " ", @vals[1], "\n", @vals[2], "\n", @vals[3], " ", length(@vals[4]) > 2? substr(@vals[4], 0, 2) : @vals[4], ", ", @vals[5], "\n";
 
 # Part 2: Making Change
 # Get user input for product name, price, and tendered money
@@ -45,4 +45,5 @@ print "Enter price of the ", lc(@vals[6]), ": ";
 @vals[7] = inputchomp();
 print "Enter the amount of cash offered: ";
 $money = int(inputchomp() * 100) - int(@vals[7] * 100);
-say "\nChange returned from purchase of: ", @vals[6], "\nDollars  ", int($money / 100), "\nQuarters ", int($money/250), "\nDimes    ", int($money % 25 / 10), "\nNickels  ", int($money % 25 % 10 / 5), "\nPennies  ", int($money % 25 % 10 % 5);
+printf "Change returned from purchase of: %s\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n", $vals[6], "Dollars", int($money / 100), "Quarters", int($money / 250), "Dimes", int($money % 25 / 10), "Nickels", int($money % 25 % 10 / 5), "Pennies", int($money % 25 % 10 % 5);
+#say "\nChange returned from purchase of: ", @vals[6], "\nDollars  ", int($money / 100), "\nQuarters ", int($money/250), "\nDimes    ", int($money % 25 / 10), "\nNickels  ", int($money % 25 % 10 / 5), "\nPennies  ", int($money % 25 % 10 % 5);
