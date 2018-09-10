@@ -45,4 +45,4 @@ print "Enter price of the ", lc(@vals[6]), ": ";
 @vals[7] = inputchomp();
 print "Enter the amount of cash offered: ";
 $money = int(inputchomp() * 100) - int(@vals[7] * 100);
-printf "Change returned from purchase of: %s\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n", $vals[6], "Dollars", int($money / 100), "Quarters", int($money / 250), "Dimes", int($money % 25 / 10), "Nickels", int($money % 25 % 10 / 5), "Pennies", int($money % 25 % 10 % 5);
+printf "Change returned from purchase of: %s\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n%-9s%d\n", $vals[6], "Dollars", int($money / 100), "Quarters", int($money / 100 % 25), "Dimes", int($money % 25 / 10), "Nickels", int($money % 25 % 10 / 5), "Pennies", int($money % 25 % 10 % 5);

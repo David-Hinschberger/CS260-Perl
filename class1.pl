@@ -1,15 +1,9 @@
-# use strict;
-# use warnings; 
+use strict;
+use warnings; 
 
+my (%honorPoints, $key, $value);
+%honorPoints = ('A', 4, B => 3, C => 2, D => 1, F => 0);
 
-#$x = <STDIN>;
-
-#print STDOUT "Hello, World!";
-
-#$foo = q{apple orange pineapple};
-
-# $date = 'date /T';
-
-# print "$date";
-print "$poop";
-print "idk";
+foreach my $val (sort {$honorPoints{$a} <=> $honorPoints{$b} or $a cmp $b} keys %honorPoints){
+    printf "%-8s %s\n", $val, $honorPoints{$val};
+}
