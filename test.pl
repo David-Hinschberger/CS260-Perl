@@ -1,5 +1,4 @@
 use strict;
 
-my $foo = 0;
-my $bar = $foo++;
-print $bar;
+my $foo = ord('A') + 4;
+print $foo;
