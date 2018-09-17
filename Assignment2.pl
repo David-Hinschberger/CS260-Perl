@@ -17,4 +17,4 @@ while(1){
     (push @credits, inputchomp) > 0 ? print "Enter the grade received: " : print 'something went wrong, @credits is <= 0';
     push @passed, @grades[(push @grades, uc inputchomp)-1] =~ /[A-D]/ ? @credits[-1] + $honorPts - (ord(@grades[-1]) - 69) - ($honorPts += (-1 * (ord(@grades[-1]) - 69))) : 0;
 }
-printf "\nTranscript for $name\nCredits Taken: %11d\nCredits Passed: %10d\nSemester GPA: %12.2f\n", (eval join '+', @credits), (eval join '+', @passed), scalar @grades < 1 ? 0 : $honorPts / scalar @grades;
+(scalar @credits) != 0? printf "\nTranscript for $name\nCredits Taken: %11d\nCredits Passed: %10d\nSemester GPA: %12.2f\n", (eval join '+', @credits), (eval join '+', @passed), scalar @grades < 1 ? 0 : $honorPts / scalar @grades : print "$name did not take any classes.";
