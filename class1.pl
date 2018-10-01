@@ -2,7 +2,7 @@ use strict;
 use Data::Dumper;
 
 my ($header, $line, @scores, $id, $name, %data1, %data2, %data3);
-
+a"syntax OK"
 my $result = open (CSVFILE, "Book11.csv");
 if (!$result){
     print "unable to find data file.\n";
