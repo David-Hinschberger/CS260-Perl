@@ -27,7 +27,7 @@ isInList("Pam") ? print "pam in list\n" : print 'pam not in list', "\n";
 
 print 'save to file "liststuff.txt": ', saveToFile("liststuff.txt"), "\n";
 
-print 'load from file "liststuff.txt": ', loadFromFile(), "\n";
+print 'load from file "liststuff.txt": ', loadFromFile("liststuff.txt"), "\n";
 
 print Dumper list();
 
