@@ -11,7 +11,7 @@ our @EXPORT = qw (&name &addItem &removeItem &isInList &saveToFile &loadFromFile
 my @list;
 my $listName = '';
 sub name{ defined @_[0]? ($listName = @_[0]) == @_[0]? return: print "something went wrong.": return $listName; }
-sub addItem{ (defined @_[0] and not isInList(@_[0])) ? return ((push @list, @_[0]) + 1 - scalar @list) : return 0; }
+sub addItem{ return (defined @_[0] and not isInList(@_[0])) ? (push @list, @_[0]) + 1 - scalar @list : 0; }
 sub removeItem{
     my $index = 0;
     $index++ until $list[$index] eq @_[0] or $index == scalar @list;
