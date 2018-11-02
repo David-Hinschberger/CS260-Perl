@@ -1,2 +1,4 @@
 #use strict;
-print length(21);
+my $foo = 'bar';
+print --$foo;
+print --$foo;
