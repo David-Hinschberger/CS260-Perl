@@ -1,0 +1,26 @@
+@foo = {'H'};
+push @foo, 'E';
+push @foo, 'L';
+push @foo, 'L';
+push @foo, 'O';
+push @foo, ' ';
+push @foo, 'W';
+push @foo, 'O';
+push @foo, 'R';
+push @foo, 'L';
+push @foo, 'D';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+print '';
+for $c in @foo{
+    print $c;
+}
