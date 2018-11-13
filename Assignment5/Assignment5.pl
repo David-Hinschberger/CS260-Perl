@@ -41,7 +41,7 @@ sub addSong{
         print "Length of song format M:SS (blank/0 to quit): ";
         $time = inputchomp;
         return unless ($time);
-    } while ($time !~ /\d:\d\d/);
+    } while ($time !~ /\d:[0-6]\d/);
     @_[0]->do("INSERT INTO songs (artist, title, album, time) VALUES ('$artist', '$title', '$album', '$time');");
 }
 
@@ -72,11 +72,10 @@ sub updateSong{
         do {
             print "Length of song format M:SS (blank to keep same): ";
             $input = inputchomp;
-        } while ($input && $input !~ /\d:\d\d/);
+        } while ($input && $input !~ /\d:[0-6]\d/);
         $time = $input if ($input);
         return $dbh->do("UPDATE songs SET artist='$artist', title='$title', album='$album', time='$time' WHERE songid = $id");
     }
-    my $input;
 }
 
 sub deleteSong{
