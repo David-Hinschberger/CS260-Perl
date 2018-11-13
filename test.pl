@@ -13,3 +13,4 @@ sub printGoodGrades{
             'AJ' => 50);
 
 printGoodGrades \%grades;
+
