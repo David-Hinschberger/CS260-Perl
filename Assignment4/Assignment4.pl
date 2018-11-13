@@ -11,7 +11,7 @@ my $fileName = $ARGV[0]? $ARGV[0] : inputchomp;
 print "Could not read file: $fileName" and exit unless ($ARGV[0]? (print "\n") && (defined open(INPUT, $fileName)) : defined open(INPUT, $fileName));
 my (@data, $foo, $i, @legend, @search);
 push @data, $_ while(chomp($_ = <INPUT>) >= 0 && $_);
-while(@legend = qw([0] [1] [2ABC] [3DEF] [4GHI] [5JKL] [6MNO] [7PQRS] [8TUV] [9WXYZ])) {
+while (@legend = qw([0] [1] [2ABC] [3DEF] [4GHI] [5JKL] [6MNO] [7PQRS] [8TUV] [9WXYZ])) {
     my $searchstr = (print "Search: ")? '' : '';
     (@search = split undef , inputchomp )? grep(/[^A-Z0-9]/i, @search) ? last : ($i = (scalar @search == 0))? last : 0 : ($i = (scalar @search == 0))? last : 0;
     $searchstr .= (($foo = $search[$i++]) && (@_ = grep(/$foo/i, @legend))[0] . '+.*') foreach (@search);

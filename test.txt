@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+
+int main(void) {
+	double a, b, result=0;
+	scanf("%d");
+	while(scanf("%lf %lf", &a, &b) == 2){
+		result += a * b;
+	}
+	printf("%lf", result);
+	return 0;
+}

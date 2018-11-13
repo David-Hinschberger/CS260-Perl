@@ -1,0 +1,5 @@
+Create a subroutine that takes:
+1) reference to an array of prompts
+
+returns:
+valid (index+1) of prompts
