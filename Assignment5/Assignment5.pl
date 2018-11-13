@@ -17,7 +17,7 @@ sub promptSure(){
 #pass in reference of array of hashes
 sub printSongs{
     printf "%d songs: \n", scalar @{${@_[0]}};
-    for my $song (@{${@_[0]}}){
+    for my $song ( @ { $ { @_[0] } } ) {
         $song->{'songid'} ? printf "Songid: %3d Title: %-15s Artist: %-15s Album: %-15s Length: %-5s\n", $song->{'songid'}, $song->{'title'}, $song->{'artist'}, $song->{'album'}, $song->{'time'} : printf "Title: %-15s Artist: %-15s Album: %-15s Length: %-5s\n", $song->{'title'}, $song->{'artist'}, $song->{'album'}, $song->{'time'};
     }
 }
@@ -27,29 +27,25 @@ sub listSongs{
 }
 
 sub addSong{
+    my @data;
     print "**ADDING SONG**\nArtist Name (blank/0 to quit): ";
-    my $artist = inputchomp;
-    return unless ($artist);
+    return unless (@data[0] = inputchomp);
     print "Song Title (blank/0 to quit): ";
-    my $title = inputchomp;
-    return unless ($title);
+    return unless (@data[1] = inputchomp);
     print "Album Name (blank/0 to quit): ";
-    my $album  = inputchomp;
-    return unless ($album);
-    my $time;
+    return unless (@data[2] = inputchomp);
     do {
         print "Length of song format M:SS (blank/0 to quit): ";
-        $time = inputchomp;
-        return unless ($time);
-    } while ($time !~ /\d:[0-6]\d/);
-    @_[0]->do("INSERT INTO songs (artist, title, album, time) VALUES ('$artist', '$title', '$album', '$time');");
+        return unless (@data[3] = inputchomp);
+    } while ($data[3] !~ /\d:([0-5]\d|60)/);
+    @_[0]->do("INSERT INTO songs (artist, title, album, time) VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]');");
 }
 
 sub updateSong{
     my $dbh = shift;
     printSongs \$dbh->selectall_arrayref("SELECT * FROM songs ORDER BY title;", {Slice => {}});
     print 'ID to update: ';
-    my $input;
+    my ($input, @data);
     while(1){
         $input = inputchomp;
         (print "Enter valid input\n") && continue unless($input !~ /d+/);
@@ -72,7 +68,7 @@ sub updateSong{
         do {
             print "Length of song format M:SS (blank to keep same): ";
             $input = inputchomp;
-        } while ($input && $input !~ /\d:[0-6]\d/);
+        } while ($input && $input !~ /\d:([0-5]\d|60)/);
         $time = $input if ($input);
         return $dbh->do("UPDATE songs SET artist='$artist', title='$title', album='$album', time='$time' WHERE songid = $id");
     }
@@ -96,14 +92,10 @@ sub searchSong{
     my $input;
     while(1){
         $input = inputchomp;
-        if($input == 1) {
-            print 'Search Artist/Song Title (blank to exit): ';
+        if($input == 1 || $input == 2) {
+            $input == 1 ? print 'Search Artist/Song Title (blank to exit): ' : print 'Seach Album (blank to exit): ';
             $input = inputchomp;
-            $input ? return printSongs \$dbh->selectall_arrayref("SELECT title, artist, album, time FROM songs WHERE artist LIKE '%$input%' OR title LIKE '%$input%' ORDER BY title", {Slice => {}}) : return;
-        }  elsif($input == 2) {
-            print 'Seach Album (blank to exit): ';
-            $input = inputchomp;
-            $input ? return printSongs \$dbh->selectall_arrayref("SELECT title, artist, album, time FROM songs WHERE ALBUM like '%$input%' ORDER BY title", {Slice => {}}) : return;
+            $input == 1 ? return printSongs \$dbh->selectall_arrayref("SELECT title, artist, album, time FROM songs WHERE artist LIKE '%$input%' OR title LIKE '%$input%' ORDER BY title", {Slice => {}}) : return printSongs \$dbh->selectall_arrayref("SELECT title, artist, album, time FROM songs WHERE ALBUM like '%$input%' ORDER BY title", {Slice => {}});
         }  elsif($input eq '') {
             return;
         }  else {print "Enter valid input\n"};
