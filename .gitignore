@@ -48,3 +48,5 @@ inc/
 
 # End of https://www.gitignore.io/api/perl,visualstudiocode
 
+.vstags
+.vstags
