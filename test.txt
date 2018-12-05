@@ -1,12 +1,28 @@
-#include <stdio.h>
-
-
-int main(void) {
-	double a, b, result=0;
-	scanf("%d");
-	while(scanf("%lf %lf", &a, &b) == 2){
-		result += a * b;
-	}
-	printf("%lf", result);
-	return 0;
-}
+"Usage:\n\nregen [OPTIONS] [PATTERN] [OPTIONS]\n\n"
+"regen is a utility that helps with visualizing regular expressions.  It interprets\n"
+"the pattern [PATTERN] and uses it to generate a string that the regular expression could\n"
+"match.\n\n"
+"Examples can be written out to a file, specified by a second argument or with the flag -f.\n\n"
+"Options\n\n"
+"  -d By default, regen uses the current time as a seed for random number generation to give seemingly\n"
+"     more random results.  -d turns this feature off.\n\n"
+"  -f must be followed by a file name.  It specifies the file name the output is to be written to.\n"
+"     If a second argument provides a file name and -f is used in addition, -f overrides.\n\n"
+"  -l indicates the number of example strings that should be written out.  The argument must be\n"
+"     followed by an integer.\n\n"
+"  -o if a file is being written and a file with the provided name already exists, overwrite it\n"
+"     without asking.\n\n"
+"  -p the * and + operators use random numbers to determine how many times to reproduce the\n"
+"     given segment.  Choose a number between 0 and 1.  A value closer to 1 will result in more\n"
+"     characters for * and +.  The devault value is .90 and the maximum value is %f.\n\n", MAX_DEC_CONT_VALUE
+"Examples\n\n"
+[a-z]+.)*' -d -o -f out.txt\n"
+"$ regen '[0-9]*' out.txt -l 20\n\n"
+"Notes on regular expression syntax and support:\n\n"
+"Regular expression syntax varies slightly from language to language.\n"
+matches end of string) characters are not supported as they\n"
+"are meaningless in this context.\n"
+eg [^ab])\n"
+"will include all of the following characters:\n\n"
+"   %s\n\n", NOT_BASE_CHARACTER_SET
+"except those included within the [].  The a-z, A-Z, and 0-9 shortcuts may be used in conjunction with ^.\n"
